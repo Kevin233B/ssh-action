@@ -1,0 +1,20 @@
+name: Manual Build
+
+on:
+  workflow_dispatch:
+    inputs:
+      branch:
+        description: '分支名'
+        required: true
+        default: 'main'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+      with:
+        ref: ${{ github.event.inputs.branch }}
+    
+    - name: Start tmate
+      uses: mxschmitt/action-tmate@v3
